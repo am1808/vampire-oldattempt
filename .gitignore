@@ -1,0 +1,32 @@
+# Git Ignore file
+# Ignore object file
+*.o
+#Ignore temporary editor files
+*~
+*.swp
+#Ignore error files
+*.err
+#Povray files
+*.pov
+# Mac files
+*.DS_Store
+# Other sundry files
+*.png
+*.cfg
+*.inc
+*.bkp
+info
+vampire*
+cfg2povray*
+cfg2rasmol*
+crystal.xyz
+log
+grain
+log.*
+info
+output
+run/unit-cell-creator
+MPI-compute-times
+MPI-wait-times
+#EOF
+
