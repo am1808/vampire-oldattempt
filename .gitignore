@@ -14,7 +14,8 @@
 *.png
 *.cfg
 *.inc
-*.bkp
+*.bkp*
+*.ckp*
 info
 vampire*
 cfg2povray*

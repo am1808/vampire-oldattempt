@@ -66,7 +66,7 @@ namespace vout{
 
    bool output_atoms_config=false;
    int output_atoms_config_rate=1000;
-   int output_atoms_file_counter=0;
+//   int ioutput_atoms_file_counter=sim::output_atoms_file_counter;
    int output_rate_counter=0;
 
    double atoms_output_min[3]={0.0,0.0,0.0};
@@ -111,13 +111,15 @@ void config(){
 
    // atoms output
    if((vout::output_atoms_config==true) && (vout::output_rate_counter%output_atoms_config_rate==0)){
-      if(output_atoms_file_counter==0) vout::atoms_coords();
+      if((sim::output_atoms_file_counter==0) || (sim::load_checkpoint_flag)) vout::atoms_coords();
+//      vout::atoms_coords();
       vout::atoms();
    }
 
    // cells output
    if((vout::output_cells_config==true) && (vout::output_rate_counter%output_cells_config_rate==0)){
-      if(output_cells_file_counter==0) vout::cells_coords();
+      if((output_cells_file_counter==0) || (sim::load_checkpoint_flag)) vout::cells_coords();
+//      vout::cells_coords();
       vout::cells();
    }
 
@@ -186,7 +188,7 @@ void config(){
       if(vmpi::my_rank!=0){
          file_sstr << std::setfill('0') << std::setw(5) << vmpi::my_rank << "-";
       }
-      file_sstr << std::setfill('0') << std::setw(8) << output_atoms_file_counter;
+      file_sstr << std::setfill('0') << std::setw(8) << sim::output_atoms_file_counter;
       file_sstr << ".cfg";
       std::string cfg_file = file_sstr.str();
       const char* cfg_filec = cfg_file.c_str();
@@ -224,7 +226,7 @@ void config(){
          cfg_file_ofstr << "Number of spin files: " << vmpi::num_processors-1 << std::endl;
          for(int p=1;p<vmpi::num_processors;p++){
             std::stringstream cfg_sstr;
-            cfg_sstr << "atoms-" << std::setfill('0') << std::setw(5) << p << "-" << std::setfill('0') << std::setw(8) << output_atoms_file_counter << ".cfg";
+            cfg_sstr << "atoms-" << std::setfill('0') << std::setw(5) << p << "-" << std::setfill('0') << std::setw(8) << sim::output_atoms_file_counter << ".cfg";
             cfg_file_ofstr << cfg_sstr.str() << std::endl;
          }
          cfg_file_ofstr << "#------------------------------------------------------"<< std::endl;
@@ -239,8 +241,8 @@ void config(){
 
       cfg_file_ofstr.close();
 
-      output_atoms_file_counter++;
-
+      sim::output_atoms_file_counter++;
+//      sim::output_atoms_file_counter=vout::ioutput_atoms_file_counter;
    }
 
 /// @brief Atomistic output function
