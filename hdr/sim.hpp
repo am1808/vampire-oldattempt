@@ -66,6 +66,7 @@ namespace sim{
         extern double H; // T
 	
 	extern double demag_factor[3];
+	extern double demag_field[3];
 	
 	extern double constraint_phi; /// Constrained minimisation vector (azimuthal) [degrees]
 	extern double constraint_theta; /// Constrained minimisation vector (rotational) [degrees]

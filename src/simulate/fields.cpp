@@ -508,14 +508,21 @@ int calculate_applied_fields(const int start_index,const int end_index){
       const double HD[3]={	mu_0*sim::demag_factor[0]*m_l[0],
                            mu_0*sim::demag_factor[1]*m_l[1],
                            mu_0*sim::demag_factor[2]*m_l[2]};
-		
-		//std::cout << "mu_0" << "\t" << mu_0 << std::endl;
+	// save demag field
+	sim::demag_field[0]=HD[0];		
+	sim::demag_field[1]=HD[1];		
+	sim::demag_field[2]=HD[2];		
+	std::cout << "demag field    " << sim::demag_field[0] << "\t" << sim::demag_field[1] << "\t" << sim::demag_field[2] << std::endl; 
+		std::cout << "mu_0" << "\t" << mu_0 << std::endl;
 		//std::cout << "Magnetisation " << stats::total_mag_actual[0] << "\t" << stats::total_mag_actual[1] << "\t" << stats::total_mag_actual[2] << std::endl;  
 		//std::cout << "External Demag Field " << HD[0] << "\t" << HD[1] << "\t" << HD[2] << std::endl;  
 		for(int atom=start_index;atom<end_index;atom++){
 			atoms::x_total_external_field_array[atom] += HD[0];
 			atoms::y_total_external_field_array[atom] += HD[1];
 			atoms::z_total_external_field_array[atom] += HD[2];
+			//std::cout << ">> Demag field and Demag factor << " << 
+			//std::cout << HD[0] << "\t" << HD[1] << "\t" << HD[2] << "\t\t";
+			//std::cout << sim::demag_factor[0] << "\t" << sim::demag_factor[1] << "\t" << sim::demag_factor[2] << std::endl;
 		}
 	}
 

@@ -2324,6 +2324,12 @@ int match_vout_list(string const word, string const value, int const line, std::
       output_list.push_back(4);
       return EXIT_SUCCESS;
    }
+   //--------------------------------------------------------------------
+   test="demagnetisation-field";
+   if(word==test){
+      output_list.push_back(47);
+      return EXIT_SUCCESS;
+   }
    else
    //--------------------------------------------------------------------
    test="applied-field-alignment";
@@ -2682,6 +2688,12 @@ int match_vout_grain_list(string const word, string const value, int const line,
    test="applied-field-unit-vector";
    if(word==test){
       output_list.push_back(4);
+      return EXIT_SUCCESS;
+   }
+   //--------------------------------------------------------------------
+   test="demagnetisation-field";
+   if(word==test){
+      output_list.push_back(47);
       return EXIT_SUCCESS;
    }
    else
@@ -4131,6 +4143,12 @@ namespace vout{
       stream << stats::material_height_magnetization.output_magnetization();
    }
 
+	// Output Function 47
+	void demag_field(std::ostream& stream){
+		stream << sim::demag_field[0] << "\t"<< sim::demag_field[1] << "\t"<< sim::demag_field[2] << "\t";
+		stream << sim::demag_factor[0] << "\t"<< sim::demag_factor[1] << "\t"<< sim::demag_factor[2] << "\t";
+	}
+	
    // Output Function 60
 	void MPITimings(std::ostream& stream){
 
@@ -4319,6 +4337,9 @@ namespace vout{
             case 46:
                vout::material_height_mvec_actual(zmag);
                break;
+            case 47:
+               vout::demag_field(zmag);
+               break;
             case 60:
 					vout::MPITimings(zmag);
 					break;
@@ -4456,6 +4477,9 @@ namespace vout{
             case 42:
                vout::mean_total_so_anisotropy_energy(std::cout);
                break;
+            case 47:
+               vout::demag_field(std::cout);
+               break;
             case 60:
 					vout::MPITimings(std::cout);
 					break;
@@ -4512,6 +4536,9 @@ namespace vout{
 					break;
 			   case 22:
 					vout::phonon_temperature(zgrain);
+				case 47:
+					vout::demag_field(zgrain);
+					break;
                break;
 			}
 		}

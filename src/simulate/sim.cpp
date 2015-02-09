@@ -90,6 +90,7 @@ namespace sim{
 //	uint64_t iH=-1*vmath::iround(double(Hmax)*1.0E6); // uT
         
 	double demag_factor[3]={0.0,0.0,0.0};
+	double demag_field[3]={0.0,0.0,0.0};
 	double head_position[2]={0.0,cs::system_dimensions[1]*0.5}; // A
 	double head_speed=30.0; /// nm/ns
 	bool   head_laser_on=false;
