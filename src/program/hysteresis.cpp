@@ -170,7 +170,7 @@ int hysteresis(){
 			// Output to screen and file after each field
 			vout::data();
 
-			std::cout << iparity << "\t" << Hfield << "\t" << sim::parity << "\t" << sim::iH << "\t" << iHmax << "\t" << iHinc << "\t" << sim::time << "\t" << start_time << "\t" << sim::partial_time << "\t" << sim::loop_time << std::endl;
+//			std::cout << iparity << "\t" << Hfield << "\t" << sim::parity << "\t" << sim::iH << "\t" << iHmax << "\t" << iHinc << "\t" << sim::time << "\t" << start_time << "\t" << sim::partial_time << "\t" << sim::loop_time << std::endl;
 
 		} // End of field loop
                 
