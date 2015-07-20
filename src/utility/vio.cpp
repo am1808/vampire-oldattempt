@@ -1933,6 +1933,8 @@ int match_sim(string const word, string const value, string const unit, int cons
       sim::demag_factor[1]=u.at(1);
       sim::demag_factor[2]=u.at(2);
       sim::ext_demag=true;
+      // force calculation of system magnetization
+      stats::calculate_system_magnetization=true;
       return EXIT_SUCCESS;
    }
    //-------------------------------------------------------------------
@@ -3040,6 +3042,36 @@ int match_material(string const word, string const value, string const unit, int
          check_for_valid_value(K, word, line, prefix, unit, "energy", -1e-18, 1e-18,"material"," < +/- 1.0e-18 J/atom");
          read_material[super_index].Ku3_SI=-K; // Import anisotropy as field, *-1
          sim::sixth_order_uniaxial_anisotropy=true;
+         return EXIT_SUCCESS;
+      }
+      //------------------------------------------------------------
+      else
+      test="second-order-harmonic-anisotropy-constant";
+      if(word==test){
+         double K=atof(value.c_str());
+         check_for_valid_value(K, word, line, prefix, unit, "energy", -1e-18, 1e-18,"material"," < +/- 1.0e-18 J/atom");
+         read_material[super_index].sh2=K;
+         sim::spherical_harmonics=true;
+         return EXIT_SUCCESS;
+      }
+      //------------------------------------------------------------
+      else
+      test="fourth-order-harmonic-anisotropy-constant";
+      if(word==test){
+         double K=atof(value.c_str());
+         check_for_valid_value(K, word, line, prefix, unit, "energy", -1e-18, 1e-18,"material"," < +/- 1.0e-18 J/atom");
+         read_material[super_index].sh4=K;
+         sim::spherical_harmonics=true;
+         return EXIT_SUCCESS;
+      }
+      //------------------------------------------------------------
+      else
+      test="sixth-order-harmonic-anisotropy-constant";
+      if(word==test){
+         double K=atof(value.c_str());
+         check_for_valid_value(K, word, line, prefix, unit, "energy", -1e-18, 1e-18,"material"," < +/- 1.0e-18 J/atom");
+         read_material[super_index].sh6=K;
+         sim::spherical_harmonics=true;
          return EXIT_SUCCESS;
       }
       //------------------------------------------------------------
