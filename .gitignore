@@ -14,13 +14,10 @@
 *.png
 *.cfg
 *.inc
-*.bkp*
-*.ckp*
-*branch_hyst_ckp*
 info
-vampire*
-cfg2povray*
-cfg2rasmol*
+vampire
+cfg2povray
+cfg2rasmol
 crystal.xyz
 log
 grain
@@ -31,4 +28,3 @@ run/unit-cell-creator
 MPI-compute-times
 MPI-wait-times
 #EOF
-

@@ -248,6 +248,9 @@ int run(){
    // Seeds with single bit differences are not ideal and may be correlated for first few values - warming up integrator
    for(int i=0; i<1000; ++i) mtrandom::grnd();
 
+   // Check for load spin configurations from checkpoint
+   if(sim::load_checkpoint_flag) load_checkpoint();
+
    // Set up statistical data sets
    #ifdef MPICF
       int num_atoms_for_statistics = vmpi::num_core_atoms+vmpi::num_bdry_atoms;

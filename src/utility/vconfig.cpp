@@ -57,7 +57,6 @@
 #include "errors.hpp"
 #include "LLG.hpp"
 #include "material.hpp"
-//#include "program.hpp"
 #include "sim.hpp"
 #include "stats.hpp"
 #include "vio.hpp"
